@@ -67,7 +67,8 @@ class Demo:
             for model, key in self.get_models(case):
                 if not isinstance(model, ModelArg):
                     continue
-                supported_p = list(set(precisions) & set(model_info[model.name]["precisions"]))
+                #supported_p = list(set(precisions) & set(model_info[model.name]["precisions"]))
+                supported_p = list(set(precisions))
                 if len(supported_p):
                     model.precision = supported_p[0]
                     for p in supported_p[1:]:
