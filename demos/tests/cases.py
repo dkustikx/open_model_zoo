@@ -175,7 +175,6 @@ NATIVE_DEMOS = [
             **MONITORS,
             '-i': DataPatternArg('gaze-estimation-adas')}),
         TestCase(options={
-            '-m': ModelArg('gaze-estimation-adas-0002'),
             '-m_hp': ModelArg('head-pose-estimation-adas-0001'),
             '-m_lm': ModelArg('facial-landmarks-35-adas-0002'),
             '-m_es': ModelArg('open-closed-eye-0001'),
@@ -184,6 +183,10 @@ NATIVE_DEMOS = [
             '-m_fd',
             ModelArg('face-detection-adas-0001'),
             ModelArg('face-detection-retail-0004')),
+        single_option_cases(
+            '-m',
+            ModelArg('gaze-estimation-adas-0001'),
+            ModelArg('gaze-estimation-adas-0002')),
     )),
 
     CppDemo(name='gaze_estimation_demo', implementation='cpp_gapi',
@@ -194,7 +197,6 @@ NATIVE_DEMOS = [
             **MONITORS,
             '-i': DataPatternArg('gaze-estimation-adas')}),
         TestCase(options={
-            '-m': ModelArg('gaze-estimation-adas-0002'),
             '-m_hp': ModelArg('head-pose-estimation-adas-0001'),
             '-m_lm': ModelArg('facial-landmarks-35-adas-0002'),
             '-m_es': ModelArg('open-closed-eye-0001'),
@@ -203,6 +205,10 @@ NATIVE_DEMOS = [
             '-m_fd',
              ModelArg('face-detection-adas-0001'),
              ModelArg('face-detection-retail-0004')),
+        single_option_cases(
+            '-m',
+            ModelArg('gaze-estimation-adas-0001'),
+            ModelArg('gaze-estimation-adas-0002')),
     )),
 
     CppDemo(name='face_detection_mtcnn_demo', implementation='cpp_gapi',

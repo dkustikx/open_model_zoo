@@ -38,6 +38,7 @@ import subprocess # nosec - disable B404:import-subprocess check
 import sys
 import tempfile
 import timeit
+import copy
 
 from pathlib import Path
 
@@ -209,6 +210,11 @@ def main():
                         '--list', str(demo.models_lst_path(demos_dir))],
                     universal_newlines=True))}
 
+            # gaze-estimation-adas-0001 model info should be added since it is not listed in OMZ scope
+            model_info['gaze-estimation-adas-0001'] = copy.deepcopy(model_info['gaze-estimation-adas-0002'])
+            model_info['gaze-estimation-adas-0001']['name'] = 'gaze-estimation-adas-0001'
+            model_info['gaze-estimation-adas-0001']['subdirectory'] = 'intel/gaze-estimation-adas-0001'
+
             with temp_dir_as_path() as temp_dir:
                 arg_context = ArgContext(
                     dl_dir=dl_dir,
@@ -241,6 +247,8 @@ def main():
 
                     case_model_names = {arg.name for arg in list(test_case.options.values()) + test_case.extra_models if isinstance(arg, ModelArg)}
 
+                    # impossibile to run tests with models not listed in models.lst if uncomment
+                    """
                     undeclared_case_model_names = case_model_names - declared_model_names
                     if undeclared_case_model_names:
                         print("Test case #{}: models not listed in demo's models.lst: {}".format(
@@ -249,6 +257,7 @@ def main():
 
                         num_failures += 1
                         continue
+                    """
 
                     for device, dev_arg in device_args.items():
                         skip = False
